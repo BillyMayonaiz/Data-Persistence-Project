@@ -18,7 +18,14 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
+    public static MainManager Instance;
+    public Color BoxColor;
+
+    public GameObject GameOverNameEntry;
+
+    //this is to make sure the MainManager is the only instance in the game
     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +64,7 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
@@ -72,5 +79,22 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        GameOverNameEntry.SetActive(true);
+    }
+
+    [System.Serializable]
+    class SaveData
+    {
+        public TextMesh highScores;
+    }
+    
+    public void SaveHighScores()
+    {
+        SaveData data = new SaveData();
+    }
+
+    public void LoadHighScores()
+    {
+
     }
 }
