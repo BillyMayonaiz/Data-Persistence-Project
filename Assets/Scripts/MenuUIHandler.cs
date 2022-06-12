@@ -38,4 +38,9 @@ public class MenuUIHandler : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    public void SaveAndUpdateHighScore()
+    {
+        MainManager.Instance.SaveHighScores();
+    }
 }

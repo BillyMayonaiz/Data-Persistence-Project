@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
@@ -11,10 +12,15 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text BestScoreText;
+    public InputField playerNameInput;
     public GameObject GameOverText;
     
     private bool m_Started = false;
     private int m_Points;
+    public int bestPoints;
+    private static string playerName;
+    public string bestPlayerName;
     
     private bool m_GameOver = false;
 
@@ -80,6 +86,17 @@ public class MainManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.SetActive(true);
         GameOverNameEntry.SetActive(true);
+
+        if (m_Points > bestPoints)
+        {
+            bestPoints = m_Points;
+            bestPlayerName = playerName;
+        }
+    }
+
+    public void UpdateHighScore()
+    {
+        BestScoreText.text = $"Best Score : {bestPlayerName} at {bestPoints}";
     }
 
     [System.Serializable]
